@@ -37,6 +37,9 @@ function App() {
         <br />
         <button>Save sentence</button>
       </form>
+      {sentences.map((atualSentence, index) => (
+        <p key={index}>{atualSentence}</p>
+      ))}
     </div>
   );
 }
