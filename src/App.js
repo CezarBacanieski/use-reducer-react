@@ -1,3 +1,4 @@
+import './App.css';
 import { useReducer, useState } from 'react';
 import reducer, { ADD_SENTENCE, DELETE_SENTENCE } from './reducer';
 
@@ -35,7 +36,7 @@ function App() {
       </form>
       {sentences.map((atualSentence, index) => (
         <p key={index}>
-          {atualSentence} -{' '}
+          {atualSentence} {' '}
           <button onClick={() => deleteSentence(atualSentence)}>
             Delete sentence
           </button>
