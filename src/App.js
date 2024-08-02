@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import reducer, { ADD_SENTENCE } from './reducer';
+import reducer, { ADD_SENTENCE, DELETE_SENTENCE } from './reducer';
 
 function App() {
   const [sentence, setSentence] = useState('');
@@ -10,6 +10,13 @@ function App() {
 
     dispatch({
       type: ADD_SENTENCE,
+      sentence,
+    });
+  }
+
+  function deleteSentence(atualSentence) {
+    dispatch({
+      type: DELETE_SENTENCE,
       sentence,
     });
   }
@@ -27,7 +34,12 @@ function App() {
         <button>Save sentence</button>
       </form>
       {sentences.map((atualSentence, index) => (
-        <p key={index}>{atualSentence}</p>
+        <p key={index}>
+          {atualSentence} -{' '}
+          <button onClick={() => deleteSentence(atualSentence)}>
+            Delete sentence
+          </button>
+        </p>
       ))}
     </div>
   );

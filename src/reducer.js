@@ -1,4 +1,5 @@
 export const ADD_SENTENCE = 'ADD_SENTENCE';
+export const DELETE_SENTENCE = 'DELETE_SENTENCE';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -13,7 +14,8 @@ const reducer = (state, action) => {
         return state;
       }
       return [...state, action.sentence];
-
+    case DELETE_SENTENCE:
+      return state.filter((sentence) => sentence !== action.sentence);
     default:
       break;
   }
