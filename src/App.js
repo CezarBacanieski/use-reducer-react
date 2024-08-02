@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
 function App() {
   // list of phrases
@@ -8,12 +7,35 @@ function App() {
   // the phrase has more than 20 characters
   // the phrase must be unique
 
+  const [sentence, setSentence] = useState('');
+  const [sentences, setSentences] = useState([]);
+
+  function saveSentence(event) {
+    event.preventDefault();
+
+    if (sentence.length < 20) {
+      alert('Sentences with less than 20 characters are not allowed.');
+      return;
+    }
+
+    if (sentences.includes(sentence)) {
+      alert('Duplicate sentences are not allowed.');
+    }
+
+    setSentences([...sentences, sentence]);
+  }
+
   return (
     <div className='App'>
-      <form>
-        <textarea required />
+      <form onSubmit={saveSentence}>
+        <textarea
+          value={sentence}
+          onChange={(event) => setSentence(event.target.value)}
+          placeholder='Type your sentence...'
+          required
+        />
         <br />
-        <button>Save phrase</button>
+        <button>Save sentence</button>
       </form>
     </div>
   );
